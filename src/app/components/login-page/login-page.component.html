@@ -1,0 +1,33 @@
+<div class="con flex align-center justify-center">
+  <div class="form-con flex justify-center align-start">
+
+    <form [formGroup]="loginFormGroup" >
+      <h1>Login to QuizQub</h1>
+      <div class="inside-form-con flex-col align-center justify-center" formGroupName="loginRequest">
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" placeholder="Your username"/>
+          <mat-error *ngIf="username.errors && (username.dirty || username.touched)">
+            Please enter valid username
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field >
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password" placeholder="Your password"/>
+          <mat-error *ngIf="password.errors && (password.dirty || password.touched)">
+            Please enter valid password
+          </mat-error>
+        </mat-form-field>
+
+        <button class="action-main-button" >Login</button>
+
+        <p routerLink="/register" class="link">No account yet? Register here</p>
+      </div>
+
+
+    </form>
+
+    <img style="align-self: stretch" class="login-img" src="../../../assets/images/login_image.jpg"/>
+  </div>
+</div>

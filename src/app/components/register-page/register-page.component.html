@@ -1,0 +1,57 @@
+<div class="con flex align-center justify-center">
+  <div class="form-con flex justify-center align-start">
+
+    <form [formGroup]="registerFormGroup" class="flex-col align-center" (ngSubmit)="onRegistrationRequest()">
+      <h1>Create an Account</h1>
+      <div class="inside-form-con" formGroupName="registrationRequest">
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" placeholder="Enter first name"/>
+          <mat-error *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+            Please enter valid first name
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="justify-self: flex-end;">
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" placeholder="Enter last name"/>
+          <mat-error *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+            Please enter valid last name
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" placeholder="Enter your username"/>
+          <mat-error *ngIf="username.errors && (username.dirty || username.touched)">
+            Please enter valid username
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="justify-self: flex-end;">
+          <mat-label>Password</mat-label>
+          <input type="password" matInput formControlName="password" placeholder="Enter your password"/>
+          <mat-error *ngIf="password.errors && (password.dirty || password.touched)">
+            Please enter valid password
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="grid-column: 1 / 3; width: 100%">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" placeholder="Enter your email"/>
+          <mat-error *ngIf="email.errors && (email.dirty || email.touched)">
+            Please enter valid email
+          </mat-error>
+        </mat-form-field>
+
+        <button class="action-main-button" >Create account</button>
+
+        <p routerLink="/login" class="link">No account yet? Register here</p>
+      </div>
+
+
+    </form>
+
+    <img style="align-self: stretch" class="login-img" src="../../../assets/images/register_image.webp"/>
+  </div>
+</div>
