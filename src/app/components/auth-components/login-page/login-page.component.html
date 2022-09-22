@@ -1,7 +1,7 @@
 <div class="con flex align-center justify-center">
   <div class="form-con flex justify-center align-start">
 
-    <form [formGroup]="loginFormGroup" >
+    <form [formGroup]="loginFormGroup" (ngSubmit)="onLoginRequest()" >
       <h1>Login to QuizQub</h1>
       <div class="inside-form-con flex-col align-center justify-center" formGroupName="loginRequest">
         <mat-form-field>
@@ -28,6 +28,6 @@
 
     </form>
 
-    <img style="align-self: stretch" class="login-img" src="../../../assets/images/login_image.jpg"/>
+    <img style="align-self: stretch" class="login-img" src="../../../../assets/images/login_image.jpg"/>
   </div>
 </div>

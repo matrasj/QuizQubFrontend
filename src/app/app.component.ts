@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'QuizQubFrontend';
+  public static API_URL : string = "http://localhost:8081"
 }
+
+

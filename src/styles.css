@@ -70,3 +70,42 @@ button:focus {outline:0 !important;}
 .link:hover {
   text-decoration: underline;
 }
+
+.dashboard-con {
+  width: 100%;
+}
+
+hr { display: block; height: 1px;
+  border: 0; border-top: 1px solid #ccc;
+  margin: 1em 0; padding: 0; }
+
+mat-sidenav-container {
+  height: 100vh;
+}
+
+.sidenav, mat-sidenav-content {
+  padding: 1.8rem 2.4rem;
+}
+
+.sidenav {
+  background-color: #343a40;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2.4rem !important;
+  color: #fff;
+}
+
+ .activity-name, .mat-icon{
+  color: #fff;
+  margin: 0 !important;
+}
+
+ mat-sidenav-content {
+   padding: 0 !important;
+ }
