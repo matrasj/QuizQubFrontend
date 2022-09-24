@@ -83,7 +83,8 @@ hr { display: block; height: 1px;
   margin: 1em 0; padding: 0; }
 
 mat-sidenav-container {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
 }
 
 .sidenav, mat-sidenav-content {
@@ -116,5 +117,44 @@ h1 {
 .dashboard-con {
    padding: 2.8rem 3.4rem;
 }
+
+
+.table-con {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 2.4rem 3.4rem;
+  max-height: 40rem;
+}
+table {
+  margin-bottom: 1.2rem !important;;
+}
+
+th {
+  background: #343a40;
+  color: #fff !important;
+  font-size: 1.2rem !important;
+}
+
+td {
+  font-size: 1rem !important;
+  color: #343a40 !important;
+}
+
+.update-icon, .delete-icon {
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+
+.table-name {
+  margin-bottom: 1.4rem !important;
+  color: #6565bb;
+  font-weight: bold;
+
+}
+
+.update-icon:hover, .delete-icon:hover {
+  transform: scale(1.2);
+  transition: all 0.2s linear;
+}
+
 
 

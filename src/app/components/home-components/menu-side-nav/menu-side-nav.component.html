@@ -1,12 +1,30 @@
-
-  <mat-sidenav-container>
+<mat-sidenav-container>
     <mat-sidenav class="sidenav" mode="side" opened="true" [disableClose]="true">
       <h1>QuizQub Project</h1>
       <hr/>
 
-      <div class="flex align-center" style="gap: 0.6rem">
+      <div class="flex align-center activity-con" style="gap: 0.6rem"
+           *ngIf="roleDashboard?.toUpperCase() === 'ADMIN'"
+           [routerLink]="['/home', 'admin']">
         <mat-icon class="mat-icon">dashboard</mat-icon>
-        <p class="activity-name">Dashboard</p>
+        <p class="activity-name"
+          >Admin Dashboard</p>
+      </div>
+
+      <div class="flex align-center activity-con" style="gap: 0.6rem"
+           *ngIf="roleDashboard?.toUpperCase() === 'TEACHER'"
+           [routerLink]="['/home', 'teacher']">
+        <mat-icon class="mat-icon">dashboard</mat-icon>
+        <p class="activity-name"
+          >Teacher Dashboard</p>
+      </div>
+
+      <div class="flex align-center activity-con" style="gap: 0.6rem"
+           *ngIf="roleDashboard?.toUpperCase() === 'STUDENT'"
+           [routerLink]="['/home', 'student']">
+        <mat-icon class="mat-icon">dashboard</mat-icon>
+        <p class="activity-name"
+        >Student Dashboard</p>
       </div>
 
       <hr/>
@@ -14,7 +32,7 @@
       <p class="actions-label">{{ roleDashboard?.toUpperCase() }} ACTIONS</p>
 
       <ul *ngIf="roleDashboard?.toUpperCase() === 'ADMIN'" class="activities-list">
-        <li class="activity-con">
+        <li class="activity-con" [routerLink]="['/home', 'admin', 'user']">
           <mat-icon>addchart</mat-icon>
           <p class="activity-name">Add User</p>
         </li>
@@ -31,9 +49,9 @@
           <p class="activity-name">Add Question</p>
         </li>
 
-        <li class="activity-con">
+        <li class="activity-con" [routerLink]="['/home', 'teacher', 'question', 'list']">
           <mat-icon>list</mat-icon>
-          <p class="activity-name" [routerLink]="['/home', 'teacher', 'question', 'list']">Questions List</p>
+          <p class="activity-name" >Questions List</p>
         </li>
 
         <li class="activity-con" (click)="logout()">
@@ -42,7 +60,7 @@
         </li>
       </ul>
 
-      <ul *ngIf="roleDashboard?.toUpperCase() === 'USER'">
+      <ul *ngIf="roleDashboard?.toUpperCase() === 'STUDENT'">
         <li class="activity-con" (click)="logout()">
           <mat-icon>logout</mat-icon>
           <p class="activity-name">Logout</p>

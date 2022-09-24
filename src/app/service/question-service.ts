@@ -39,9 +39,17 @@ export class QuestionService {
       responseType : 'text'
     });
   }
+
+  getQuestionsByKeywordWithPagination(pageNumber: number, pageSize: number, keyword: string) : Observable<PageApiResponse>{
+    return this.httpClient.get<PageApiResponse>(`${AppComponent.API_URL}/api/v1/questions/pagination/findByContentKeywordContaining?keyword=${keyword}&pageSize=${pageSize}&pageNumber=${pageNumber}`);
+  }
+
+  getQuestionForSession(subjectName: string) : Observable<QuestionPayloadModel[]> {
+    return this.httpClient.get<QuestionPayloadModel[]>(`${AppComponent.API_URL}/api/v1/questions/findBySubjectName?subjectName=${subjectName}`)
+  }
 }
 
-interface PageApiResponse {
+export interface PageApiResponse {
   content : QuestionPayloadResponseModel[],
   totalElements : number,
   totalPages : number,

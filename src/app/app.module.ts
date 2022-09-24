@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { LoginPageComponent } from './components/auth-components/login-page/login-page.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {MatButtonModule} from "@angular/material/button";
@@ -12,7 +12,6 @@ import { RegisterPageComponent } from './components/auth-components/register-pag
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { HomePageComponent } from './components/home-components/home-page/home-page.component';
 import { UserProfileBarComponent } from './components/home-components/user-profile-bar/user-profile-bar.component';
-import { UserDashboardComponent } from './components/user-components/user-dashboard/user-dashboard.component';
 import { TeacherDashboardComponent } from './components/teacher-components/teacher-dashboard/teacher-dashboard.component';
 import { AdminDashboardComponent } from './components/admin-components/admin-dashboard/admin-dashboard.component';
 import {AuthService} from "./service/auth-service";
@@ -31,6 +30,16 @@ import { QuestionsListComponent } from './components/teacher-components/question
 import {MatTableModule} from "@angular/material/table";
 import { ConfirmDeletionDialogComponent } from './components/teacher-components/questions-list/confirm-deletion-dialog/confirm-deletion-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import {NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
+import {UserService} from "./service/user-service";
+import { UserFormComponent } from './components/admin-components/user-form/user-form.component';
+import { PasswordInfoDialogComponent } from './components/admin-components/user-form/password-info-dialog/password-info-dialog.component';
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import { ConfirmUserDeletionDialogComponent } from './components/admin-components/admin-dashboard/confirm-user-deletion-dialog/confirm-user-deletion-dialog.component';
+import {
+  StudentDashboardComponent
+} from "./components/student-compontents/student-dashboard/student-dashboard.component";
+import { SessionQuizFormComponent } from './components/student-compontents/session-quiz-form/session-quiz-form.component';
 
 
 const routes : any = [
@@ -39,8 +48,12 @@ const routes : any = [
   { path : "register", component : RegisterPageComponent },
   { path : "home", component : HomePageComponent, children : [
       {
-        path: "user", component: UserDashboardComponent,
-        canActivate : [AuthGuard], data : {role : "USER"},
+        path: "student", component: StudentDashboardComponent,
+        canActivate : [AuthGuard], data : {role : "STUDENT"},
+      },
+      {
+        path : "student/quiz/:subjectName", component : SessionQuizFormComponent,
+        canActivate: [AuthGuard], data : {role : 'STUDENT'}
       },
       {
         path : "teacher", component : TeacherDashboardComponent,
@@ -63,7 +76,16 @@ const routes : any = [
         path : "admin", component : AdminDashboardComponent,
         canActivate : [AuthGuard], data : {role : "ADMIN"}
       },
-    ],
+      {
+        path : "admin/user", component : UserFormComponent,
+        canActivate : [AuthGuard], data : {role : 'ADMIN'}
+      },
+      {
+        path: "admin/user/:id", component: UserFormComponent,
+        canActivate: [AuthGuard], data: {role: 'ADMIN'}
+      }
+
+      ],
     canActivate : [HomeGuard]
   },
 
@@ -79,14 +101,18 @@ const routes : any = [
     RegisterPageComponent,
     HomePageComponent,
     UserProfileBarComponent,
-    UserDashboardComponent,
     TeacherDashboardComponent,
     AdminDashboardComponent,
     MenuSideNavComponent,
     AdminActionsComponent,
     QuestionFormComponent,
     QuestionsListComponent,
-    ConfirmDeletionDialogComponent
+    ConfirmDeletionDialogComponent,
+    UserFormComponent,
+    PasswordInfoDialogComponent,
+    ConfirmUserDeletionDialogComponent,
+    StudentDashboardComponent,
+    SessionQuizFormComponent
   ],
   imports: [
     BrowserModule,
@@ -106,13 +132,17 @@ const routes : any = [
       timeOut: 3000
     }),
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    NgbPaginationModule,
+    FormsModule,
+    MatCheckboxModule
   ],
   providers: [AuthService,
     HomeGuard,
     AuthGuard,
     { provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true},
-    ToastrService],
+    ToastrService,
+    UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -12,30 +12,48 @@
    width: 90%;
  }
 
- .table-name {
-   margin-bottom: 1.4rem;
-   color: #6565bb;
-   font-weight: bold;
- }
 
  .current-place {
    color: #596164;
  }
 
- .table-con {
-   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-   padding: 2.4rem 3.4rem;
-   min-height: 30rem;
- }
 
- th {
-   color: #343a40;
-   font-weight: bold;
-   font-size: 1.2rem;
- }
+hr {
+  margin-bottom: 1.8rem;
+}
 
- td {
-   font-size: 1rem;
- }
+
+ngb-pagination ::ng-deep ul > li:not(.active) > a {
+  background-color: #343a40;
+}
+
+ngb-pagination ::ng-deep ul > li.active > a {
+  background-color: #343a40 !important;
+  color: #fff !important;
+  border: #343a40 solid 1px !important;
+
+}
+
+ngb-pagination ::ng-deep ul > li.active > a ng-s{ }
+
+ngb-pagination ::ng-deep ul > li.active > a span {
+  display: none;
+}
+
+ngb-pagination ::ng-deep ul > li.page-link > a  {
+  color: #fff !important;
+}
+
+/deep/ .pagination .page-link {
+  border-top-style: none !important;
+  border-bottom-style: none !important;
+  background-color: #f6f6f6 !important;
+  color: #343a40 !important;
+}
+
+mat-form-field button {
+  background: none;
+  border: none;
+}
 
 

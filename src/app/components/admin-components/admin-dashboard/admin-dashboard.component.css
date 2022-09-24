@@ -1,0 +1,45 @@
+h1 {
+  text-align: left;
+  color: #343a40;
+}
+
+table {
+  margin-bottom: 1.2rem;
+}
+
+hr {
+  margin-bottom: 1.8rem;
+}
+
+mat-form-field button {
+  background: none;
+  border: none;
+}
+
+ngb-pagination ::ng-deep ul > li:not(.active) > a {
+  background-color: #343a40;
+}
+
+ngb-pagination ::ng-deep ul > li.active > a {
+  background-color: #343a40 !important;
+  color: #fff !important;
+  border: #343a40 solid 1px !important;
+
+}
+
+ngb-pagination ::ng-deep ul > li.active > a ng-s{ }
+
+ngb-pagination ::ng-deep ul > li.active > a span {
+  display: none;
+}
+
+ngb-pagination ::ng-deep ul > li.page-link > a  {
+  color: #fff !important;
+}
+
+/deep/ .pagination .page-link {
+  border-top-style: none !important;
+  border-bottom-style: none !important;
+  background-color: #f6f6f6 !important;
+  color: #343a40 !important;
+}

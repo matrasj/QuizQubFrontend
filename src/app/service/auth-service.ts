@@ -46,9 +46,6 @@ export class AuthService {
     return this.getToken() && this.getRole();
   }
 
-
-
-
   public authenticateUser(loginRequest : LoginPayloadRequestModel) : Observable<LoginPayloadResponseInterface> {
     return this.httpClient.post<LoginPayloadResponseInterface>(`${this.API_URL}/api/v1/auth/login`, loginRequest);
   }
