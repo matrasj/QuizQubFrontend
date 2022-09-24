@@ -1,0 +1,30 @@
+.actions-label {
+  color: #cecbcb;
+  font-weight: bold;
+  font-size: 0.8rem;
+  margin-top: 2.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.activity-con {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  padding: 0.6rem 0.4rem;
+  transition: all 0.2s linear;
+  border-radius: 0.5rem;
+}
+
+.activity-con:hover {
+  background-color: #2d3236;
+  transition: all 0.2s linear;
+
+}
+
+.activities-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+
+}

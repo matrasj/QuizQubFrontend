@@ -1,0 +1,57 @@
+
+  <mat-sidenav-container>
+    <mat-sidenav class="sidenav" mode="side" opened="true" [disableClose]="true">
+      <h1>QuizQub Project</h1>
+      <hr/>
+
+      <div class="flex align-center" style="gap: 0.6rem">
+        <mat-icon class="mat-icon">dashboard</mat-icon>
+        <p class="activity-name">Dashboard</p>
+      </div>
+
+      <hr/>
+
+      <p class="actions-label">{{ roleDashboard?.toUpperCase() }} ACTIONS</p>
+
+      <ul *ngIf="roleDashboard?.toUpperCase() === 'ADMIN'" class="activities-list">
+        <li class="activity-con">
+          <mat-icon>addchart</mat-icon>
+          <p class="activity-name">Add User</p>
+        </li>
+
+        <li class="activity-con" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <p class="activity-name">Logout</p>
+        </li>
+      </ul>
+
+      <ul *ngIf="roleDashboard?.toUpperCase() === 'TEACHER'">
+        <li class="activity-con" [routerLink]="['/home', 'teacher', 'question']" >
+          <mat-icon>add_task</mat-icon>
+          <p class="activity-name">Add Question</p>
+        </li>
+
+        <li class="activity-con">
+          <mat-icon>list</mat-icon>
+          <p class="activity-name" [routerLink]="['/home', 'teacher', 'question', 'list']">Questions List</p>
+        </li>
+
+        <li class="activity-con" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <p class="activity-name">Logout</p>
+        </li>
+      </ul>
+
+      <ul *ngIf="roleDashboard?.toUpperCase() === 'USER'">
+        <li class="activity-con" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <p class="activity-name">Logout</p>
+        </li>
+      </ul>
+
+      <hr style="margin-top: 1.8rem"/>
+    </mat-sidenav>
+
+  </mat-sidenav-container>
+
+

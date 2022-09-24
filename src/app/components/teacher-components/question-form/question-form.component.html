@@ -1,0 +1,90 @@
+<div class="question-form-con flex-col">
+
+  <div class="form-con">
+    <h1 style="text-align: left; font-size: 1.8rem" class="current-place">Teacher Dashboard</h1>
+    <form [formGroup]="questionFormGroup" (ngSubmit)="onFormSubmitting()">
+      <h1>{{ currentQuestion ? 'Update the Question' : 'Create question' }}</h1>
+      <div formGroupName="question">
+        <mat-form-field appearance="fill">
+          <mat-label>Subject</mat-label>
+          <mat-select formControlName="subject">
+            <mat-option *ngFor="let subject of subjects" [value]="subject.name">
+              {{ subject?.name }}
+            </mat-option>
+
+          </mat-select>
+          <mat-error *ngIf="subject.errors && (subject.dirty || subject.touched)">
+            Please select subject
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Question content</mat-label>
+          <input matInput placeholder="What is the highest building?" formControlName="content">
+          <mat-error *ngIf="content.errors && (content.dirty || content.touched)">
+            Question content is required
+          </mat-error>
+        </mat-form-field>
+
+        <div class="grid">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>First option</mat-label>
+            <input matInput placeholder="Option #1" formControlName="firstOption">
+            <mat-error *ngIf="firstOption.errors && (firstOption.dirty || firstOption.touched)">
+              Option can not be blank
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Second option</mat-label>
+            <input matInput placeholder="Option #2" formControlName="secondOption">
+            <mat-error *ngIf="secondOption.errors && (secondOption.dirty || secondOption.touched)">
+              Option can not be blank
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Third option</mat-label>
+            <input matInput placeholder="Option #3" formControlName="thirdOption">
+            <mat-error *ngIf="thirdOption.errors && (thirdOption.dirty || thirdOption.touched)">
+              Option can not be blank
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Fourth option</mat-label>
+            <input matInput placeholder="Option #4" formControlName="fourthOption">
+            <mat-error *ngIf="fourthOption.errors && (fourthOption.dirty || fourthOption.touched)">
+              Option can not be blank
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Correct option</mat-label>
+          <mat-select formControlName="correctOption">
+            <mat-option [value]="1">
+              1
+            </mat-option>
+            <mat-option [value]="2">
+              2
+            </mat-option>
+            <mat-option [value]="3">
+              3
+            </mat-option>
+            <mat-option [value]="4">
+              4
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="correctOption.errors && (correctOption.dirty || correctOption.touched)">
+            Please select correct option
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <button type="submit" class="action-main-button" style="width: 100%">{{ currentQuestion ? 'Update the Question' : 'Create question'}}</button>
+    </form>
+
+
+  </div>
+</div>

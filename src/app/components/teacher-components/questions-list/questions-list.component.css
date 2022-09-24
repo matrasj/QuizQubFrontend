@@ -1,0 +1,41 @@
+.questions-list-con {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+ mat-form-field {
+   display: flex;
+ }
+
+ .main-con {
+   width: 90%;
+ }
+
+ .table-name {
+   margin-bottom: 1.4rem;
+   color: #6565bb;
+   font-weight: bold;
+ }
+
+ .current-place {
+   color: #596164;
+ }
+
+ .table-con {
+   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+   padding: 2.4rem 3.4rem;
+   min-height: 30rem;
+ }
+
+ th {
+   color: #343a40;
+   font-weight: bold;
+   font-size: 1.2rem;
+ }
+
+ td {
+   font-size: 1rem;
+ }
+
+

@@ -1,0 +1,13 @@
+.dialog-con {
+  width: 15rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.btns-con, button {
+  width: 100%;
+}
+
+
