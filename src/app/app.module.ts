@@ -24,6 +24,14 @@ import {MatIconModule} from "@angular/material/icon";
 import {MenuSideNavComponent} from "./components/home-components/menu-side-nav/menu-side-nav.component";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import { AdminActionsComponent } from './components/admin-components/admin-actions/admin-actions.component';
+import {ToastrModule, ToastrService} from "ngx-toastr";
+import { QuestionFormComponent } from './components/teacher-components/question-form/question-form.component';
+import {MatSelectModule} from "@angular/material/select";
+import { QuestionsListComponent } from './components/teacher-components/questions-list/questions-list.component';
+import {MatTableModule} from "@angular/material/table";
+import { ConfirmDeletionDialogComponent } from './components/teacher-components/questions-list/confirm-deletion-dialog/confirm-deletion-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
+
 
 const routes : any = [
   { path : "",  pathMatch: 'full', redirectTo : '/login'},
@@ -39,13 +47,27 @@ const routes : any = [
         canActivate : [AuthGuard], data : {role : "TEACHER"}
       },
       {
+        path : "teacher/question", component : QuestionFormComponent,
+        canActivate : [AuthGuard], data : {role : "TEACHER"}
+      },
+      {
+        path : "teacher/question/list", component : QuestionsListComponent,
+        canActivate : [AuthGuard], data : {role : "TEACHER"}
+      },
+      {
+        path : "teacher/question/:questionId", component : QuestionFormComponent,
+        canActivate : [AuthGuard], data : {role : "TEACHER"}
+      },
+
+      {
         path : "admin", component : AdminDashboardComponent,
         canActivate : [AuthGuard], data : {role : "ADMIN"}
       },
     ],
     canActivate : [HomeGuard]
   },
-  { path : "**", redirectTo : '/login'},
+
+  { path : "** ", redirectTo : '/login'},
 
 ];
 
@@ -61,7 +83,10 @@ const routes : any = [
     TeacherDashboardComponent,
     AdminDashboardComponent,
     MenuSideNavComponent,
-    AdminActionsComponent
+    AdminActionsComponent,
+    QuestionFormComponent,
+    QuestionsListComponent,
+    ConfirmDeletionDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -73,9 +98,21 @@ const routes : any = [
     HttpClientModule,
     MatMenuModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatDialogModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      closeButton: true,
+      timeOut: 3000
+    }),
+    MatSelectModule,
+    MatTableModule
   ],
-  providers: [AuthService, HomeGuard, AuthGuard, { provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true}],
+  providers: [AuthService,
+    HomeGuard,
+    AuthGuard,
+    { provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true},
+    ToastrService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

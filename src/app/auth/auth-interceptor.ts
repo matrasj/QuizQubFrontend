@@ -17,9 +17,9 @@ export class AuthInterceptor implements HttpInterceptor {
     }
 
     const jwtToken : string | null = this.authService.getToken();
-    this.addToken(req, jwtToken);
 
-    return next.handle(req).pipe(
+    const requestWithBearerJwtToken = this.addToken(req, jwtToken);
+    return next.handle(requestWithBearerJwtToken).pipe(
       catchError(
         (err : HttpErrorResponse | any) => {
           if (err.status === 401 || err.status === 403) {
@@ -33,8 +33,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
   }
 
-  private addToken(request : HttpRequest<any>, jwtToken : string | null) : HttpRequest<any>{
-    return request.clone({
+  private addToken(request : HttpRequest<any>, jwtToken : string | null) : HttpRequest<any> {
+     return request.clone({
       setHeaders : {
         Authorization : "Bearer " + jwtToken
       }
