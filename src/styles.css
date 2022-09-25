@@ -156,5 +156,6 @@ td {
   transition: all 0.2s linear;
 }
 
-
-
+.toast-message{
+  color: #fff !important;
+}

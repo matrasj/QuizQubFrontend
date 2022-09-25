@@ -40,6 +40,11 @@ import {
   StudentDashboardComponent
 } from "./components/student-compontents/student-dashboard/student-dashboard.component";
 import { SessionQuizFormComponent } from './components/student-compontents/session-quiz-form/session-quiz-form.component';
+import {SessionService} from "./service/session-service";
+import {CountdownModule} from "ngx-countdown";
+import {NgCircleProgressModule} from "ng-circle-progress";
+import {SubjectsChartComponent} from "./components/student-compontents/subjects-chart/subjects-chart.component";
+import {AccumulationChart, AccumulationChartModule} from "@syncfusion/ej2-angular-charts";
 
 
 const routes : any = [
@@ -48,8 +53,12 @@ const routes : any = [
   { path : "register", component : RegisterPageComponent },
   { path : "home", component : HomePageComponent, children : [
       {
-        path: "student", component: StudentDashboardComponent,
+        path : "student", component: StudentDashboardComponent,
         canActivate : [AuthGuard], data : {role : "STUDENT"},
+      },
+      {
+        path : "student/subjects/chart", component : SubjectsChartComponent,
+        canActivate : [AuthGuard], data : {role : "STUDENT"}
       },
       {
         path : "student/quiz/:subjectName", component : SessionQuizFormComponent,
@@ -112,7 +121,8 @@ const routes : any = [
     PasswordInfoDialogComponent,
     ConfirmUserDeletionDialogComponent,
     StudentDashboardComponent,
-    SessionQuizFormComponent
+    SessionQuizFormComponent,
+    SubjectsChartComponent
   ],
   imports: [
     BrowserModule,
@@ -131,18 +141,32 @@ const routes : any = [
       closeButton: true,
       timeOut: 3000
     }),
+    NgCircleProgressModule.forRoot({
+
+      radius: 100,
+      outerStrokeWidth: 16,
+      innerStrokeWidth: 8,
+      outerStrokeColor: "#78C000",
+      innerStrokeColor: "#C7E596",
+      animationDuration: 300,
+
+    }),
     MatSelectModule,
     MatTableModule,
     NgbPaginationModule,
     FormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    CountdownModule,
+    AccumulationChartModule
   ],
   providers: [AuthService,
     HomeGuard,
     AuthGuard,
     { provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true},
     ToastrService,
-    UserService],
+    UserService,
+    SessionService
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
