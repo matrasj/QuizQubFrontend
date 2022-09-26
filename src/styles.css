@@ -116,6 +116,7 @@ h1 {
 
 .dashboard-con {
    padding: 2.8rem 3.4rem;
+  min-height: 100vh;
 }
 
 
@@ -131,11 +132,11 @@ table {
 th {
   background: #343a40;
   color: #fff !important;
-  font-size: 1.2rem !important;
+  font-size: 1rem !important;
 }
 
 td {
-  font-size: 1rem !important;
+  font-size: 0.8rem !important;
   color: #343a40 !important;
 }
 

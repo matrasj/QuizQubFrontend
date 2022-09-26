@@ -1,4 +1,4 @@
-import {OptionPayloadRequestModel} from "./option-payload-request-model";
+import {OptionPayloadRequestModel} from "../option/option-payload-request-model";
 
 export class QuestionPayloadRequestModel {
   constructor(public subjectName : string,

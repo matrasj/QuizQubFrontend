@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {TeacherService} from "../../../service/teacher-service";
 import {SessionPayloadResponseModel} from "../../../model/session/session-payload-response-model";
+import {ActivatedRoute, Router} from "@angular/router";
+import {SubjectService} from "../../../service/subject-service";
+import {SubjectPayloadResponseModel} from "../../../model/subject/subject-payload-response-model";
 
 @Component({
   selector: 'app-teacher-dashboard',
@@ -14,16 +17,37 @@ export class TeacherDashboardComponent implements OnInit {
   pageSize : number = 5;
   pageNumber : number = 1;
   sessions : SessionPayloadResponseModel[] = [];
+
+  selectedSubject : string = '';
+  subjects : SubjectPayloadResponseModel[] = [];
   displayedColumns : string[] = ["studentName", "subjectName", "startTime", "duration", "percentageScore"]
-  constructor(private teacherService : TeacherService) { }
+  constructor(private teacherService : TeacherService,
+              private router : Router,
+              private subjectService : SubjectService,
+              private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.subjectService.getAllSubjects()
+      .subscribe((subjects) => {
+        this.subjects = subjects;
+      });
+
     this.loadData();
   }
 
   loadData() {
-    this.teacherService.getSessionsForTeacherDashboard(this.pageNumber - 1, this.pageSize)
-      .subscribe((res) => this.handleResponse(res));
+    this.activatedRoute.queryParamMap
+      .subscribe((queryParamMap) => {
+        if (queryParamMap.has('subjectName')) {
+          this.teacherService.getSessionsForTeacherDashboardFilterBySubjectName(
+            this.pageNumber - 1, this.pageSize,
+            String(queryParamMap.get('subjectName')).toUpperCase())
+            .subscribe((res) => this.handleResponse(res));
+        } else {
+          this.teacherService.getSessionsForTeacherDashboard(this.pageNumber - 1, this.pageSize)
+            .subscribe((res) => this.handleResponse(res));
+        }
+      })
   }
 
   handleResponse(data : any) {
@@ -50,6 +74,15 @@ export class TeacherDashboardComponent implements OnInit {
     const minutes = Number(date.getMinutes()) < 10 ? '0' + date.getMinutes() : date.getMinutes();
 
     return `${day} ${month} ${year} - ${hours}:${minutes}`;
+  }
+
+
+
+  filterBySubject(subjectName : string) {
+    this.selectedSubject = subjectName;
+    this.router.navigate(['/home', 'teacher'], {
+      queryParams : {subjectName : this.selectedSubject}
+    });
   }
 
 

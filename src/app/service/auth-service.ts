@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {AppComponent} from "../app.component";
-import {LoginPayloadRequestModel} from "../model/login-payload-request-model";
-import {UserPayloadResponseModel} from "../model/user-payload-response-model";
+import {LoginPayloadRequestModel} from "../model/auth/login-payload-request-model";
+import {UserPayloadResponseModel} from "../model/user/user-payload-response-model";
 import {Observable} from "rxjs";
 
 @Injectable({

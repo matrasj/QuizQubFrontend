@@ -12,6 +12,8 @@ mat-form-field button {
   border: none;
 }
 
+
+
 ngb-pagination ::ng-deep ul > li:not(.active) > a {
   background-color: #343a40;
 }

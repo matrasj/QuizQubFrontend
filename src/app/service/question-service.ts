@@ -3,9 +3,9 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {AppComponent} from "../app.component";
 import {AppModule} from "../app.module";
-import {QuestionPayloadRequestModel} from "../model/question-payload-request-model";
-import {QuestionPayloadResponseModel} from "../model/question-payload-response-model";
-import {QuestionPayloadModel} from "../model/question-payload-model";
+import {QuestionPayloadRequestModel} from "../model/question/question-payload-request-model";
+import {QuestionPayloadResponseModel} from "../model/question/question-payload-response-model";
+import {QuestionPayloadModel} from "../model/question/question-payload-model";
 
 @Injectable({
   providedIn : 'root'
@@ -40,12 +40,12 @@ export class QuestionService {
     });
   }
 
-  getQuestionsByKeywordWithPagination(pageNumber: number, pageSize: number, keyword: string) : Observable<PageApiResponse>{
-    return this.httpClient.get<PageApiResponse>(`${AppComponent.API_URL}/api/v1/questions/pagination/findByContentKeywordContaining?keyword=${keyword}&pageSize=${pageSize}&pageNumber=${pageNumber}`);
-  }
-
   getQuestionForSession(subjectName: string) : Observable<QuestionPayloadModel[]> {
     return this.httpClient.get<QuestionPayloadModel[]>(`${AppComponent.API_URL}/api/v1/questions/findBySubjectName?subjectName=${subjectName}`)
+  }
+
+  getQuestionsBySubjectNameWithPagination(subjectName: string, pageNumber: number, pageSize: number) : Observable<PageApiResponse> {
+    return this.httpClient.get<PageApiResponse>(`${AppComponent.API_URL}/api/v1/questions/pagination/findBySubjectName?subjectName=${subjectName}&pageSize=${pageSize}&pageNumber=${pageNumber}`)
   }
 }
 

@@ -45,6 +45,7 @@ import {CountdownModule} from "ngx-countdown";
 import {NgCircleProgressModule} from "ng-circle-progress";
 import {SubjectsChartComponent} from "./components/student-compontents/subjects-chart/subjects-chart.component";
 import {AccumulationChart, AccumulationChartModule} from "@syncfusion/ej2-angular-charts";
+import {RoleService} from "./service/role-service";
 
 
 const routes : any = [
@@ -127,7 +128,7 @@ const routes : any = [
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' }),
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
@@ -165,7 +166,8 @@ const routes : any = [
     { provide : HTTP_INTERCEPTORS, useClass : AuthInterceptor, multi : true},
     ToastrService,
     UserService,
-    SessionService
+    SessionService,
+    RoleService
     ],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../../service/auth-service";
-import {UserPayloadResponseModel} from "../../../model/user-payload-response-model";
+import {UserPayloadResponseModel} from "../../../model/user/user-payload-response-model";
 import {Router} from "@angular/router";
 
 @Component({

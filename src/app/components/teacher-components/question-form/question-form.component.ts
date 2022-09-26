@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {Form, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {SubjectPayloadResponseModel} from "../../../model/subject-payload-response-model";
+import {SubjectPayloadResponseModel} from "../../../model/subject/subject-payload-response-model";
 import {SubjectService} from "../../../service/subject-service";
 import {QuestionService} from "../../../service/question-service";
-import {QuestionPayloadRequestModel} from "../../../model/question-payload-request-model";
-import {OptionPayloadRequestModel} from "../../../model/option-payload-request-model";
+import {QuestionPayloadRequestModel} from "../../../model/question/question-payload-request-model";
+import {OptionPayloadRequestModel} from "../../../model/option/option-payload-request-model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {QuestionPayloadModel} from "../../../model/question-payload-model";
+import {QuestionPayloadModel} from "../../../model/question/question-payload-model";
 import {ToastrService} from "ngx-toastr";
 
 @Component({

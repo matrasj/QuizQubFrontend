@@ -19,21 +19,20 @@
             </mat-form-field>
           </div>
 
-         <form (ngSubmit)="searchForQuestionsByKeyword()">
-           <div>
-             <div class="flex align-center">
+        <div>
+          <div class="flex align-center">
 
-               <mat-form-field appearance="outline" color="primary">
-                 <mat-label>Search: </mat-label>
-                 <input matInput placeholder="Search for questions..." name="keyword" [(ngModel)]="keyword"/>
-                 <button matSuffix type="submit">
-                   <mat-icon  color="primary" matSuffix>search</mat-icon>
-                 </button>
-               </mat-form-field>
+            <mat-form-field appearance="fill">
+              <mat-label>Subject</mat-label>
+              <mat-select [value]="selectedSubject" (selectionChange)="filterBySubject($event.value)">
+                <mat-option *ngFor="let subject of subjects" [value]="subject.name" >
+                  {{ subject.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
 
-             </div>
-           </div>
-         </form>
+          </div>
+        </div>
       </div>
 
       <p class="alert alert-warning" *ngIf="questions.length === 0">No questions there.</p>

@@ -21,21 +21,20 @@
         </mat-form-field>
       </div>
 
-      <form >
-        <div>
-          <div class="flex align-center">
+      <div>
+        <div class="flex align-center">
 
-            <mat-form-field appearance="outline" color="primary">
-              <mat-label>Search by username</mat-label>
-              <input matInput placeholder="Search for users..." name="keyword" />
-              <button matSuffix type="submit">
-                <mat-icon  color="primary" matSuffix>search</mat-icon>
-              </button>
-            </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Subject</mat-label>
+            <mat-select [value]="selectedRole" (selectionChange)="filterByRole($event.value)">
+              <mat-option *ngFor="let role of roles" [value]="role.name" >
+                {{ role.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-          </div>
         </div>
-      </form>
+      </div>
     </div>
     <table mat-table [dataSource]="users" class="mat-elevation-z8" style="width: 100%;">
       <ng-container matColumnDef="username">

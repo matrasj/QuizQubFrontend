@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {SubjectPayloadResponseModel} from "../model/subject-payload-response-model";
+import {SubjectPayloadResponseModel} from "../model/subject/subject-payload-response-model";
 import {environment} from "../../environments/environment";
 import {AppComponent} from "../app.component";
 

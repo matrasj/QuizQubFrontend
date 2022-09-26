@@ -3,8 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {PageApiResponse} from "./question-service";
 import {AppComponent} from "../app.component";
-import {UserPayloadRequestModel} from "../model/user-payload-request-model";
-import {UserPayloadResponseModel} from "../model/user-payload-response-model";
+import {UserPayloadRequestModel} from "../model/user/user-payload-request-model";
+import {UserPayloadResponseModel} from "../model/user/user-payload-response-model";
 import {A} from "@angular/cdk/keycodes";
 
 @Injectable({
@@ -45,5 +45,10 @@ export class UserService {
 
   getAttemptsByUserId(userId : number) : Observable<Map<string, number>> {
     return this.httpClient.get<Map<string, number>>(`${AppComponent.API_URL}/api/v1/users/findAttemptsByUserId?userId=${userId}`)
+  }
+
+
+  getUsersWithPaginationFilteredByRole(pageNumber : number, pageSize : number, roleName: string) : Observable<PageApiResponse> {
+    return this.httpClient.get<PageApiResponse>(`${AppComponent.API_URL}/api/v1/users/findByRoleName?roleName=${roleName}&pageSize=${pageSize}&pageNumber=${pageNumber}`);
   }
 }

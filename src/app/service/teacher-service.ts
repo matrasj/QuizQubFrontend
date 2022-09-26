@@ -15,4 +15,8 @@ export class TeacherService {
   public getSessionsForTeacherDashboard(pageNumber : number, pageSize : number) : Observable<PageApiResponse> {
     return this.httpClient.get<PageApiResponse>(`${AppComponent.API_URL}/api/v1/sessions/pagination/students?pageNumber=${pageNumber}&pageSize=${pageSize}`);
   }
+
+  getSessionsForTeacherDashboardFilterBySubjectName(pageNumber : number, pageSize : number, subjectName: string) : Observable<PageApiResponse> {
+    return this.httpClient.get<PageApiResponse>(`${AppComponent.API_URL}/api/v1/sessions/pagination/students/filterBySubjectName?subjectName=${subjectName}&pageNumber=${pageNumber}&pageSize=${pageSize}`);
+  }
 }
