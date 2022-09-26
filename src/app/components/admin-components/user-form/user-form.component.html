@@ -1,0 +1,69 @@
+<div class="user-form-con flex-col">
+  <div class="form-con">
+    <form [formGroup]="userFormGroup" class="flex-col align-center justify-center" (ngSubmit)="onFormSubmitting()">
+      <h1>{{ currentUser ? 'Update' : 'Create' }} an Account</h1>
+      <div class="grid" formGroupName="user">
+        <mat-form-field>
+          <mat-label>First Name</mat-label>
+          <input matInput formControlName="firstName" placeholder="Enter first name"/>
+          <mat-error *ngIf="firstName.errors && (firstName.dirty || firstName.touched)">
+            Please enter valid first name
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field >
+          <mat-label>Last Name</mat-label>
+          <input matInput formControlName="lastName" placeholder="Enter last name"/>
+          <mat-error *ngIf="lastName.errors && (lastName.dirty || lastName.touched)">
+            Please enter valid last name
+          </mat-error>
+        </mat-form-field>
+
+
+
+        <mat-form-field style="position: relative">
+          <mat-label>{{ currentUser ? "New " : '' }}Password</mat-label>
+          <input  type="password" matInput formControlName="password" placeholder="Enter {{ currentUser ? 'new' : ''}} password"/>
+          <mat-icon *ngIf="currentUser" color="warn" class="warning-icon" (click)="openPasswordInfoDialog()" matSuffix>warning</mat-icon>
+
+            <mat-error *ngIf="password.errors && (password.dirty || password.touched)">
+              Please enter valid password
+            </mat-error>
+
+          <mat-checkbox [checked]="passwordDisabled" *ngIf="currentUser"  color="primary" (change)="onPasswordNotChanging($event)"  class="absolute-checkbox">Don't change</mat-checkbox>
+        </mat-form-field>
+
+        <mat-form-field style="position: relative">
+          <mat-label>{{ currentUser ? "New " : '' }}Username</mat-label>
+          <input  type="text" matInput formControlName="username" placeholder="Enter username"/>
+          <mat-error *ngIf="username.errors && (username.dirty || username.touched)">
+            Please enter valid username
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="grid-column: 1 / 3">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput formControlName="email" placeholder="Enter your email"/>
+          <mat-error *ngIf="email.errors && (email.dirty || email.touched)">
+            Please enter valid email
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill"  style="grid-column: 1 / 3;">
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="role" [(ngModel)]="this.role.value">
+            <mat-option *ngFor="let role of roles" [value]="role">
+              {{ role }}
+            </mat-option>
+
+          </mat-select>
+          <mat-error *ngIf="role.errors && (role.dirty || role.touched)">
+            Please select subject
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <button type="submit" style="width: 100%; max-width: 40rem;" class="action-main-button">{{ currentUser ? 'Update' : 'Create'}}</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="dashboard-con flex-col align-center">
+  <div *ngIf="questions.length > 0"  style="width: 75%; margin-bottom: 1.2rem">
+    <div class="flex space-between align-center">
+      <h1>Test on {{ currentSubject}}</h1>
+      <p id="time-out">10:00</p>
+    </div>
+
+    <div class="questions-con flex-col" style="width: 100%">
+      <div class="question" *ngFor="let question of questions; let index = index">
+        <p class="question-name"><span class="numeration">{{index+1}}</span>.   {{ question.content }}</p>
+
+        <ul  class="options-list" >
+          <li class="option-con" *ngFor="let option of question.options"
+              [ngClass]="userAnswers.get(question.content) === option.content ? 'answer-selected' : ''" (click)="selectAnswer(question, option)">
+            {{ option.content }}
+          </li>
+        </ul>
+
+
+      </div>
+      <button class="action-main-button" style="width: 100%"
+              (click)="onFinishingAttempt()"
+              [disabled]="questions.length !== userAnswers.size">Save attempt</button>
+    </div>
+  </div>
+
+
+    <p class="alert alert-warning" *ngIf="questions.length === 0" style="width: 100%">No questions for this subject.</p>
+
+</div>

@@ -1,0 +1,48 @@
+.user-form-con {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.form-con {
+  width: 90%;
+}
+
+form {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 2.4rem 3.4rem;
+}
+
+.grid {
+  justify-content: center;
+  display: grid;
+  width: 100%;
+  max-width: 40rem;
+  column-gap: 1.2rem;
+  row-gap: 1.2rem;
+  grid-template-columns:  repeat(2, 1fr);
+  margin-bottom: 1.4rem;
+}
+
+h1 {
+  text-align: left;
+  color: #343a40;
+}
+
+.warning-icon {
+  cursor: pointer;
+  transition: all 0.2s linear;
+}
+
+.warning-icon:hover {
+  transition: all 0.2s linear;
+  transform: scale(1.2);
+}
+
+.absolute-checkbox {
+  position: absolute;
+  right: -10%;
+  z-index: 2;
+  top: 100%;
+}

@@ -1,0 +1,51 @@
+<div class="dashboard-con">
+  <p class="alert alert-warning" *ngIf="!latestSession">You haven't participate in any session yet.</p>
+  <div *ngIf="latestSession" class="latest-session flex align-center" style="gap: 1.8rem">
+    <div class="flex-col align-start" style="gap: 2.4rem">
+      <p class="latest-title">Latest session in {{ latestSession?.subjectName }}</p>
+      <button class="action-main-button" [routerLink]="['/home', 'student', 'subjectsnpm install @syncfusion/ej2-angular-charts@ngcc --save', 'chart']">See subjects chart</button>
+    </div>
+    <div class="flex-col align-center">
+      <circle-progress
+        [percent]="latestSession?.percentageScore.replace('%', '')"
+        [radius]="100"
+        [outerStrokeWidth]="16"
+        [innerStrokeWidth]="8"
+        [outerStrokeColor]="latestSession?.percentageScore.replace('%', '') >= 50 ? '#78C000' : '#e03131'"
+        [innerStrokeColor]="latestSession?.percentageScore.replace('%', '') >= 50 ? '#C7E596' : '#FF6347'"
+        [animation]="true"
+        [animationDuration]="300"
+        subtitle="Latest score"
+        [showTitle]="true"
+      ></circle-progress>
+      <p *ngIf="latestSession?.percentageScore.replace('%', '') >= 50 else failed"
+         class="passed-label">Passed</p>
+      <ng-template #failed>
+        <p class="failed-label">Failed</p>
+      </ng-template>
+    </div>
+  </div>
+  <h1>Student Dashboard</h1>
+  <div class="grid">
+    <button class="quiz-view-con flex space-between align-center"
+         *ngFor="let subjectAttempt of subjectAndAttempts | keyvalue"
+          [routerLink]="['/home', 'student', 'quiz', subjectAttempt.key]"
+          >
+      <mat-icon class="quiz-icon" color="primary">bookmark</mat-icon>
+      <div class="flex-col " style="align-items: flex-end; gap: 0.6rem">
+        <p class="quantity-number">{{ subjectAttempt.value}} Marks</p>
+        <p class="subject-name">{{ subjectAttempt.key }}</p>
+      </div>
+    </button>
+  </div>
+
+  <div class="info-banner">
+    <h2>Instructions for participating</h2>
+    <ul>
+      <li>To pass the Quiz you need to score at least 50%</li>
+      <li>You can not leave empty answers</li>
+      <li>For every attempt you have max 10 minutes</li>
+      <li>Good Luck!</li>
+    </ul>
+  </div>
+</div>
