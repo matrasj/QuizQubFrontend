@@ -19,6 +19,8 @@ export class StudentDashboardComponent implements OnInit {
   subjects : SubjectPayloadResponseModel[] = [];
   latestSession : SessionPayloadResponseModel | any;
   subjectAndAttempts : Map<string, number> = new Map<string, number>();
+
+
   constructor(private authService : AuthService,
               private subjectService : SubjectService,
               private userService : UserService,

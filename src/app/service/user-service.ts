@@ -47,6 +47,9 @@ export class UserService {
     return this.httpClient.get<Map<string, number>>(`${AppComponent.API_URL}/api/v1/users/findAttemptsByUserId?userId=${userId}`)
   }
 
+  getAverageScoreForEverySubjectByUserId(userId : number) : Observable<Map<string, number>> {
+    return this.httpClient.get<Map<string, number>>(`${AppComponent.API_URL}/api/v1/users/findAverageScoresByUserId?userId=${userId}`);
+  }
 
   getUsersWithPaginationFilteredByRole(pageNumber : number, pageSize : number, roleName: string) : Observable<PageApiResponse> {
     return this.httpClient.get<PageApiResponse>(`${AppComponent.API_URL}/api/v1/users/findByRoleName?roleName=${roleName}&pageSize=${pageSize}&pageNumber=${pageNumber}`);

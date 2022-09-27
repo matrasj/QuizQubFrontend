@@ -41,3 +41,16 @@ ngb-pagination ::ng-deep ul > li.page-link > a  {
   background-color: #f6f6f6 !important;
   color: #343a40 !important;
 }
+
+.username-data {
+  transition: all 0.2s linear;
+  cursor: pointer;
+}
+
+.username-data:hover {
+  background-color: #343a40;
+  color: #fff !important;
+  transition: all 0.2s linear;
+}
+
+

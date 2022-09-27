@@ -75,7 +75,7 @@ export class SessionQuizFormComponent implements OnInit, OnDestroy {
             10,
             convertedTime,
         true,
-            calculatedScore
+            Number(calculatedScore)
       );
 
       this.sessionService.saveSession(sessionRequest)
@@ -100,7 +100,7 @@ export class SessionQuizFormComponent implements OnInit, OnDestroy {
 
     const percentageScore = (correctAnswersNumber / this.questions.length) * 100;
 
-    return `${percentageScore.toFixed(0)}%`;
+    return `${percentageScore.toFixed(0)}`;
   }
 
   private static convertSecondToStringMinutesAndSecond(seconds : number) : string {

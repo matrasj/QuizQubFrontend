@@ -11,7 +11,7 @@ import {SubjectPayloadResponseModel} from "../../../model/subject/subject-payloa
   styleUrls: ['./teacher-dashboard.component.css']
 })
 export class TeacherDashboardComponent implements OnInit {
-  perPage : number[] = [1, 2, 3, 5, 10];
+  perPage : number[] = [1, 2, 3, 5];
   totalElements : number = 0;
   totalPages : number = 0;
   pageSize : number = 5;
@@ -39,6 +39,7 @@ export class TeacherDashboardComponent implements OnInit {
     this.activatedRoute.queryParamMap
       .subscribe((queryParamMap) => {
         if (queryParamMap.has('subjectName')) {
+          console.log(String(queryParamMap.get('subjectName')))
           this.teacherService.getSessionsForTeacherDashboardFilterBySubjectName(
             this.pageNumber - 1, this.pageSize,
             String(queryParamMap.get('subjectName')).toUpperCase())

@@ -4,6 +4,6 @@ export class SessionPayloadRequestModel {
               public minutesMaxDuration : number,
               public durationTime : string,
               public finished : boolean,
-              public percentageScore : string) {
+              public percentageScore : number) {
   }
 }

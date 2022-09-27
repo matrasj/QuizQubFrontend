@@ -46,6 +46,8 @@ import {NgCircleProgressModule} from "ng-circle-progress";
 import {SubjectsChartComponent} from "./components/student-compontents/subjects-chart/subjects-chart.component";
 import {AccumulationChart, AccumulationChartModule} from "@syncfusion/ej2-angular-charts";
 import {RoleService} from "./service/role-service";
+import { StudentProfileComponent } from './components/student-compontents/student-profile/student-profile.component';
+import {NgxChartsModule} from "@swimlane/ngx-charts";
 
 
 const routes : any = [
@@ -55,44 +57,48 @@ const routes : any = [
   { path : "home", component : HomePageComponent, children : [
       {
         path : "student", component: StudentDashboardComponent,
-        canActivate : [AuthGuard], data : {role : "STUDENT"},
+        canActivate : [AuthGuard], data : {roles : ["STUDENT"]},
       },
       {
         path : "student/subjects/chart", component : SubjectsChartComponent,
-        canActivate : [AuthGuard], data : {role : "STUDENT"}
+        canActivate : [AuthGuard], data : {roles : ["STUDENT"]}
       },
       {
         path : "student/quiz/:subjectName", component : SessionQuizFormComponent,
-        canActivate: [AuthGuard], data : {role : 'STUDENT'}
+        canActivate: [AuthGuard], data : {roles : ['STUDENT']}
+      },
+      {
+        path : "student/profile/:id", component : StudentProfileComponent,
+        canActivate: [AuthGuard], data: {roles : ["TEACHER", "STUDENT"]}
       },
       {
         path : "teacher", component : TeacherDashboardComponent,
-        canActivate : [AuthGuard], data : {role : "TEACHER"}
+        canActivate : [AuthGuard], data : {roles : ["TEACHER"]}
       },
       {
         path : "teacher/question", component : QuestionFormComponent,
-        canActivate : [AuthGuard], data : {role : "TEACHER"}
+        canActivate : [AuthGuard], data : {roles : ["TEACHER"]}
       },
       {
         path : "teacher/question/list", component : QuestionsListComponent,
-        canActivate : [AuthGuard], data : {role : "TEACHER"}
+        canActivate : [AuthGuard], data : {roles : ["TEACHER"]}
       },
       {
         path : "teacher/question/:questionId", component : QuestionFormComponent,
-        canActivate : [AuthGuard], data : {role : "TEACHER"}
+        canActivate : [AuthGuard], data : {roles : ["TEACHER"]}
       },
 
       {
         path : "admin", component : AdminDashboardComponent,
-        canActivate : [AuthGuard], data : {role : "ADMIN"}
+        canActivate : [AuthGuard], data : {roles : ["ADMIN"]}
       },
       {
         path : "admin/user", component : UserFormComponent,
-        canActivate : [AuthGuard], data : {role : 'ADMIN'}
+        canActivate : [AuthGuard], data : {roles : ['ADMIN']}
       },
       {
         path: "admin/user/:id", component: UserFormComponent,
-        canActivate: [AuthGuard], data: {role: 'ADMIN'}
+        canActivate: [AuthGuard], data: {roles: ['ADMIN']}
       }
 
       ],
@@ -123,7 +129,8 @@ const routes : any = [
     ConfirmUserDeletionDialogComponent,
     StudentDashboardComponent,
     SessionQuizFormComponent,
-    SubjectsChartComponent
+    SubjectsChartComponent,
+    StudentProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -136,6 +143,7 @@ const routes : any = [
     MatMenuModule,
     MatIconModule,
     MatSidenavModule,
+    NgxChartsModule,
     MatDialogModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-right',

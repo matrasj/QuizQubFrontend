@@ -22,4 +22,8 @@ export class UserProfileBarComponent implements OnInit {
     this.router.navigate(["/login"]);
   }
 
+  onProfileSettingsNavigating() {
+    this.router.navigate(['/home', this.currentUser.roleName.toLowerCase(),'profile', this.authService.getCurrentUser()?.id]);
+  }
+
 }
