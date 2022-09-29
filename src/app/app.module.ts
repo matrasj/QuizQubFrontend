@@ -48,6 +48,7 @@ import {AccumulationChart, AccumulationChartModule} from "@syncfusion/ej2-angula
 import {RoleService} from "./service/role-service";
 import { StudentProfileComponent } from './components/student-compontents/student-profile/student-profile.component';
 import {NgxChartsModule} from "@swimlane/ngx-charts";
+import { FooterComponent } from './components/footer/footer.component';
 
 
 const routes : any = [
@@ -130,7 +131,8 @@ const routes : any = [
     StudentDashboardComponent,
     SessionQuizFormComponent,
     SubjectsChartComponent,
-    StudentProfileComponent
+    StudentProfileComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

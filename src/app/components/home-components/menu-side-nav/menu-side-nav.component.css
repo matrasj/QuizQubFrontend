@@ -27,3 +27,11 @@
   flex-direction: column;
   gap: 1.2rem;
 }
+
+.main-nav-con {
+  /*position: fixed;*/
+  /*left: 0;*/
+  /*top: 0;*/
+  height: 100%;
+  z-index: 20 !important;
+}

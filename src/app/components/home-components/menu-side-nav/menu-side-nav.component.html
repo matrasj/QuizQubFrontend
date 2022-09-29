@@ -1,4 +1,5 @@
-<mat-sidenav-container>
+<div class="main-nav-con">
+  <mat-sidenav-container>
     <mat-sidenav class="sidenav" mode="side" opened="true" [disableClose]="true">
       <h1>QuizQub Project</h1>
       <hr/>
@@ -8,7 +9,7 @@
            [routerLink]="['/home', 'admin']">
         <mat-icon class="mat-icon">dashboard</mat-icon>
         <p class="activity-name"
-          >Admin Dashboard</p>
+        >Admin Dashboard</p>
       </div>
 
       <div class="flex align-center activity-con" style="gap: 0.6rem"
@@ -16,7 +17,7 @@
            [routerLink]="['/home', 'teacher']">
         <mat-icon class="mat-icon">dashboard</mat-icon>
         <p class="activity-name"
-          >Teacher Dashboard</p>
+        >Teacher Dashboard</p>
       </div>
 
       <div class="flex align-center activity-con" style="gap: 0.6rem"
@@ -73,3 +74,5 @@
   </mat-sidenav-container>
 
 
+
+</div>

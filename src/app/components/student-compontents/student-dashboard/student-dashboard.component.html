@@ -3,7 +3,7 @@
   <div *ngIf="latestSession" class="latest-session flex align-center" style="gap: 1.8rem">
     <div class="flex-col align-start" style="gap: 2.4rem">
       <p class="latest-title">Latest session in {{ latestSession?.subjectName }}</p>
-      <button class="action-main-button" [routerLink]="['/home', 'student', 'subjectsnpm install @syncfusion/ej2-angular-charts@ngcc --save', 'chart']">See subjects chart</button>
+      <button class="action-main-button" [routerLink]="['/home', 'student', 'profile', currentUser?.id]">See subjects chart</button>
     </div>
     <div class="flex-col align-center">
       <circle-progress
