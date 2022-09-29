@@ -1,27 +1,27 @@
-# QuizQubFrontend
+The project QuizQub has been created by me because I wanted to learn Java and Angular interview questions so I want to create some kind of quiz platform. In the Internet I saw project by created in ThymeLeaf so I decided to write it on my own using Java, Spring Boot, Hibernate for backend and Angular & TypeScript for frontend. During work on the project I practised my Angular skills and I learn about Angular Materials components.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.1.0.
+In app we have 3 roles: Admin, Teacher and Student. As an admin we can handle with accounts (update, delete). As a teacher we can create questions for subjects, update them and see user sessions history with their scores. Eihter as a teacher and student we can see some charts ( see session's number for every subject and average score).
+Application is still being developed by me and I add new functionalities. I also can create questions and test my knowledge in Java and Angular simultaneously 😀.
 
-## Development server
+Above I attach some screenshots.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Login page ( I used Jwt for implementation authentication)
+![image](https://user-images.githubusercontent.com/95829811/193062744-b70fcc66-2007-46b5-b403-e2caae2817d3.png)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Register page ( In register I confirm mail with MAILDEV and send confirmation token on this mail and then enable account)
+![image](https://user-images.githubusercontent.com/95829811/193062816-50f54921-e910-4095-843d-007d95e572b8.png)
 
-## Build
+Dashboard for admin account ( table with student, teachers, and admins)
+![image](https://user-images.githubusercontent.com/95829811/193063360-22eec016-ff06-4300-8575-765165b0ffaa.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+Filter with role
+![image](https://user-images.githubusercontent.com/95829811/193063471-8e5da151-e899-45d3-85a8-5672134a3bf0.png)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+Create account form with Reactive Forms validation and Angular Material
+![image](https://user-images.githubusercontent.com/95829811/193063895-771dcdc6-f363-45d6-b664-061bb0afad6d.png)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Update selected account
