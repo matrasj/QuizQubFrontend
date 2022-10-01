@@ -70,3 +70,9 @@ Quiz session
 If score is greater than 51% we pass. Forutnately I've passed 😀 
 ![image](https://user-images.githubusercontent.com/95829811/193067503-69da54fe-7cba-4db9-b361-c84acd58f2ea.png)
 
+
+
+* Update - Added pdf download questions functionality
+![image](https://user-images.githubusercontent.com/95829811/193403588-375df6fc-29b1-4b6e-91a7-e59fb5c5b897.png)
+![image](https://user-images.githubusercontent.com/95829811/193403596-962474b7-d7e5-4408-a165-819df1d380bd.png)
+
