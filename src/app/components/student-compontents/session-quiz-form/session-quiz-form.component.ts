@@ -18,7 +18,7 @@ export class SessionQuizFormComponent implements OnInit, OnDestroy {
   questions : QuestionPayloadModel[] = [];
   userAnswers : Map<string, string> = new Map<string, string>();
   currentSubject : string = '';
-  secondsLeft : number = 600;
+  secondsLeft : number = 120;
   counterElement : any;
   currentUser : UserPayloadResponseModel | any;
   interval : any;

@@ -1,0 +1,37 @@
+.profile-img {
+  width: 15rem;
+}
+
+h1 {
+  color: #343a40;
+  text-align: left;
+  margin-bottom: 1rem !important;
+}
+
+.profile-con {
+  padding: 3.4rem 5.8rem;
+}
+
+.account-data-con {
+  padding-top: 2.4rem;
+}
+
+.data-info {
+  font-size: 1.1rem;
+  text-transform: none;
+  color: #343a40;
+}
+
+th {
+  margin-top: 1.2rem;
+  padding: 0.4rem 0.8rem;
+}
+
+tr {
+  margin-bottom: 2.8rem
+}
+
+.profile-data-con {
+  padding: 2.4rem 3.8rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}

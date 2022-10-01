@@ -25,6 +25,7 @@
             <mat-form-field appearance="fill">
               <mat-label>Subject</mat-label>
               <mat-select [value]="selectedSubject" (selectionChange)="filterBySubject($event.value)">
+                <mat-option value="all" >All</mat-option>
                 <mat-option *ngFor="let subject of subjects" [value]="subject.name" >
                   {{ subject.name }}
                 </mat-option>
@@ -71,13 +72,16 @@
 
       <div class="flex space-between" *ngIf="questions.length > 0">
         <p>Showing {{ pageNumber }} of {{ totalPages }} pages ({{ pageSize}} per page)</p>
-        <ngb-pagination
-          [collectionSize]="totalElements"
-          [(page)]="pageNumber"
-          [pageSize]="pageSize"
-          [boundaryLinks]="true"
-          (pageChange)="loadData()">
-        </ngb-pagination>
+        <div class="flex" style="gap: 2.4rem;">
+          <button (click)="onQuestionsDownloading()">Download questions</button>
+          <ngb-pagination
+            [collectionSize]="totalElements"
+            [(page)]="pageNumber"
+            [pageSize]="pageSize"
+            [boundaryLinks]="true"
+            (pageChange)="loadData()">
+          </ngb-pagination>
+        </div>
       </div>
 
 

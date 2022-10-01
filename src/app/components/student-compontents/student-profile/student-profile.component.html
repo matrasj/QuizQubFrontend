@@ -1,0 +1,41 @@
+<div class="profile-con flex " style="gap: 2.4rem">
+  <div class="flex-col align-start profile-data-con" style="gap: 3.8rem;">
+    <div class="flex align-start" style="width: 100%;">
+      <img src="../../../../assets/images/user_profile_img.jpg" class="profile-img" alt="Image show profile image"/>
+      <div class="account-data-con">
+        <h1 *ngIf="currentUser?.roleName === 'TEACHER'">Profile for </h1>
+        <p class="data-info">Username: {{currentUser?.username}}</p>
+        <p class="data-info">Full Name: {{ currentUser?.firstName}} {{ currentUser?.lastName}}</p>
+        <p class="data-info">Role: {{ currentUser?.roleName.toUpperCase()}}</p>
+        <a class="data-info" href="mailto:{{currentUser?.email}}?Subject=Hello {{ currentUser?.firstName}} {{ currentUser?.lastName}}" >Email: {{ currentUser?.email }}</a>
+      </div>
+    </div>
+
+    <div class="chart">
+      <table >
+        <th>Subjects and attempts</th>
+        <tr >
+          <td>
+            <ngx-charts-bar-horizontal [xScaleMax]="25" [xScaleMin]="0" [results]="subjectAndAttemptsResult" [view]="view" [scheme]="colorScheme" [schemeType]="schemeType" [gradient]="gradient" [xAxis]="xAxis" [yAxis]="yAxis" [legend]="legend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+                                       [xAxisLabel]="yAxisLabel" [yAxisLabel]="xAxisLabel" [legendTitle]="legendTitle" [legendPosition]="legendPosition" [animations]="animations" [showGridLines]="showGridLines" [trimXAxisTicks]="trimXAxisTicks" [trimYAxisTicks]="trimYAxisTicks"
+                                       [rotateXAxisTicks]="rotateXAxisTicks" [maxXAxisTickLength]="maxXAxisTickLength" [maxYAxisTickLength]="maxYAxisTickLength" [xAxisTickFormatting]="formatNumber" [yAxisTickFormatting]="formatString" [xAxisTicks]="yAxisTicks" [showDataLabel]="showDataLabel"
+                                       [barPadding]="barPadding" [tooltipDisabled]="tooltipDisabled" [roundEdges]="roundEdges">
+            </ngx-charts-bar-horizontal>
+          </td>
+        </tr>
+
+        <th>Average percentage score for every subject</th>
+        <tr>
+          <td>
+            <ngx-charts-bar-vertical [results]="subjectAndAverageScores" [view]="view" [scheme]="colorScheme" [schemeType]="schemeType" [gradient]="gradient" [xAxis]="xAxis" [yAxis]="yAxis" [legend]="legend" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel"
+                                     [xAxisLabel]="xAxisLabel" [yAxisLabel]="percentageLabel" [legendTitle]="legendTitle" [legendPosition]="legendPosition" [animations]="animations" [showGridLines]="showGridLines" [trimXAxisTicks]="trimXAxisTicks" [trimYAxisTicks]="trimYAxisTicks"
+                                     [rotateXAxisTicks]="rotateXAxisTicks" [maxXAxisTickLength]="maxXAxisTickLength" [maxYAxisTickLength]="maxYAxisTickLength" [xAxisTickFormatting]="formatString"  [yAxisTicks]="yAxisPercentTicks" [showDataLabel]="showDataLabel"
+                                     [barPadding]="barPadding" [tooltipDisabled]="tooltipDisabled" [roundEdges]="roundEdges"
+                                     [yAxisTickFormatting]="myYAxisTickFormatting">
+            </ngx-charts-bar-vertical>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

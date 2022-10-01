@@ -24,6 +24,7 @@
     "@popperjs/core": "^2.11.6",
     "@swimlane/ngx-charts": "^20.1.0",
     "@syncfusion/ej2-angular-charts": "^20.2.50-ngcc",
+    "jspdf": "^2.5.1",
     "ng-circle-progress": "^1.6.0",
     "ngx-countdown": "^14.0.0",
     "ngx-toastr": "^15.0.0",

@@ -47,10 +47,19 @@ export class QuestionService {
   getQuestionsBySubjectNameWithPagination(subjectName: string, pageNumber: number, pageSize: number) : Observable<PageApiResponse> {
     return this.httpClient.get<PageApiResponse>(`${AppComponent.API_URL}/api/v1/questions/pagination/findBySubjectName?subjectName=${subjectName}&pageSize=${pageSize}&pageNumber=${pageNumber}`)
   }
+
+  // for downloading
+  getAllQuestionsBySubjectName(subjectName : string) : Observable<QuestionPayloadModel[]> {
+    return this.httpClient.get<QuestionPayloadModel[]>(`${AppComponent.API_URL}/api/v1/questions/subjectName/${subjectName}`);
+  }
+
+  getAllQuestions() : Observable<QuestionPayloadModel[]> {
+    return this.httpClient.get<QuestionPayloadModel[]>(`${AppComponent.API_URL}/api/v1/questions`);
+  }
 }
 
 export interface PageApiResponse {
-  content : QuestionPayloadResponseModel[],
+  content : QuestionPayloadModel[],
   totalElements : number,
   totalPages : number,
   size : number,

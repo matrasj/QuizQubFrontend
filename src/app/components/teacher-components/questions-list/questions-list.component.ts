@@ -6,6 +6,8 @@ import {ConfirmDeletionDialogComponent} from "./confirm-deletion-dialog/confirm-
 import {ActivatedRoute, Router} from "@angular/router";
 import {SubjectPayloadResponseModel} from "../../../model/subject/subject-payload-response-model";
 import {SubjectService} from "../../../service/subject-service";
+import jsPDF from 'jspdf';
+import {QuestionPayloadModel} from "../../../model/question/question-payload-model";
 
 @Component({
   selector: 'app-questions-list',
@@ -13,7 +15,7 @@ import {SubjectService} from "../../../service/subject-service";
   styleUrls: ['./questions-list.component.css']
 })
 export class QuestionsListComponent implements OnInit {
-  questions : QuestionPayloadResponseModel[] = [];
+  questions : QuestionPayloadModel[] = [];
   perPage : number[] = [1, 2, 3, 5, 10];
   totalElements : number = 0;
   totalPages : number = 0;
@@ -33,10 +35,12 @@ export class QuestionsListComponent implements OnInit {
     this.subjectService.getAllSubjects()
       .subscribe((subjects) => this.subjects = subjects);
 
+
     this.loadData();
   }
 
    handleResponse(data : any) {
+     console.log(data.content)
     this.questions = data.content;
     this.totalElements = data.totalElements;
     this.totalPages = data.totalPages;
@@ -48,13 +52,14 @@ export class QuestionsListComponent implements OnInit {
     this.activatedRoute.queryParamMap
       .subscribe((queryParamMap) => {
         if (queryParamMap.has('subjectName')) {
-           this.questionService.getQuestionsBySubjectNameWithPagination(this.selectedSubject, this.pageNumber - 1, this.pageSize)
+          this.selectedSubject = String(queryParamMap.get('subjectName'));
+          this.questionService.getQuestionsBySubjectNameWithPagination(this.selectedSubject, this.pageNumber - 1, this.pageSize)
              .subscribe((res) => this.handleResponse(res));
         } else {
           this.questionService.getQuestionsWithPagination(this.pageNumber - 1, this.pageSize)
             .subscribe((res) => this.handleResponse(res));
         }
-      })
+      });
   }
 
   onDeleting(questionId : number) {
@@ -71,10 +76,78 @@ export class QuestionsListComponent implements OnInit {
   }
 
   filterBySubject(subjectName : string) {
-    this.selectedSubject = subjectName;
-    this.router.navigate(['/home', 'teacher', 'question', 'list'], {
-      queryParams : {subjectName : this.selectedSubject}
-    });
+    if (subjectName !== 'all') {
+      this.selectedSubject = subjectName;
+      this.router.navigate(['/home', 'teacher', 'question', 'list'], {
+        queryParams : {subjectName : this.selectedSubject}
+      });
+    } else {
+      this.selectedSubject = '';
+      this.router.navigate(['/home', 'teacher', 'question', 'list']);
+    }
   }
 
+  async onQuestionsDownloading()  {
+    const doc = new jsPDF();
+    let documentText : string = '';
+    let wantedQuestions : QuestionPayloadModel[] = [];
+    if (this.selectedSubject) {
+       this.questionService.getAllQuestionsBySubjectName(`${this.selectedSubject}`)
+        .subscribe((questions : QuestionPayloadModel[]) => {
+          wantedQuestions = questions;
+          documentText += `Quiz form ${this.selectedSubject}\n`;
+          this.createQuestionsFormattedListToPdf(wantedQuestions, documentText, doc);
+        });
+    } else {
+      await this.questionService.getAllQuestions()
+        .subscribe((questions : QuestionPayloadModel[]) => {
+          wantedQuestions = questions;
+          documentText += "General knowledge test";
+          this.createQuestionsFormattedListToPdf(wantedQuestions, documentText, doc);
+        });
+    }
+
+
+
+
+
+
+
+
+  }
+
+  private createQuestionsFormattedListToPdf(wantedQuestions : QuestionPayloadModel[], documentText : string, doc : jsPDF) {
+    documentText += 'Teacher is responsible for time\nGood luck!\n\n';
+    wantedQuestions.forEach((question, i) => {
+      let pageHeight = doc.internal.pageSize.getHeight();
+
+      documentText += `${i + 1}. ${question.content}\n`;
+      documentText += question.options.map((option, index) => `${this.getAlphabetLetter(index)}) ${option.content}`).join('\n');
+      documentText += '\n\n';
+      doc.text(documentText, 30, 50);
+    });
+    doc.save('questions.pdf');
+  }
+
+  private getAlphabetLetter(index : number) {
+    switch (index) {
+      case 0 : {
+        return 'a';
+      }
+
+      case 1 : {
+        return 'b';
+      }
+
+      case 2 : {
+        return 'c';
+      }
+
+      case 3 : {
+        return 'd';
+      }
+    }
+    return '';
+
+  }
 }
