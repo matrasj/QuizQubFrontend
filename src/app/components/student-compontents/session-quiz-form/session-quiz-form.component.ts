@@ -22,7 +22,9 @@ export class SessionQuizFormComponent implements OnInit, OnDestroy {
   counterElement : any;
   currentUser : UserPayloadResponseModel | any;
   interval : any;
-  private TEN_MINUTES_IN_MILLISECOND: number = 600;
+  private maxMinutesDuration: number = 2;
+  private MAX_TIME: number = this.maxMinutesDuration * 60;
+
   constructor(private activatedRoute : ActivatedRoute,
               private questionService : QuestionService,
               private authService : AuthService,
@@ -66,13 +68,13 @@ export class SessionQuizFormComponent implements OnInit, OnDestroy {
     if (this.userAnswers.size < this.questions.length) {
       this.toastrService.error("Every question must be answered!")
     } else {
-      const convertedTime : string = SessionQuizFormComponent.convertSecondToStringMinutesAndSecond(this.TEN_MINUTES_IN_MILLISECOND - this.secondsLeft);
+      const convertedTime : string = SessionQuizFormComponent.convertSecondToStringMinutesAndSecond(this.MAX_TIME - this.secondsLeft);
       const calculatedScore : string = this.calculatePercentageScore();
       const sessionRequest : SessionPayloadRequestModel
           = new SessionPayloadRequestModel(
             this.currentUser.id,
             this.currentSubject,
-            10,
+            this.maxMinutesDuration,
             convertedTime,
         true,
             Number(calculatedScore)
