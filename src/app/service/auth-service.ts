@@ -4,6 +4,8 @@ import {AppComponent} from "../app.component";
 import {LoginPayloadRequestModel} from "../model/auth/login-payload-request-model";
 import {UserPayloadResponseModel} from "../model/user/user-payload-response-model";
 import {Observable} from "rxjs";
+import {RegisterPayloadRequestModel} from "../model/auth/register-payload-request-model";
+import {RegisterPayloadResponseMode} from "../model/auth/register-payload-response-mode";
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +50,10 @@ export class AuthService {
 
   public authenticateUser(loginRequest : LoginPayloadRequestModel) : Observable<LoginPayloadResponseInterface> {
     return this.httpClient.post<LoginPayloadResponseInterface>(`${this.API_URL}/api/v1/auth/login`, loginRequest);
+  }
+
+  registerUser(registerPayloadRequestModel: RegisterPayloadRequestModel) : Observable<RegisterPayloadResponseMode> {
+    return this.httpClient.post<RegisterPayloadResponseMode>(`${this.API_URL}/api/v1/auth/registration`, registerPayloadRequestModel);
   }
 }
 

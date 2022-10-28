@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {AuthService} from "../../../service/auth-service";
+import {RegisterPayloadRequestModel} from "../../../model/auth/register-payload-request-model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-register-page',
@@ -8,7 +11,9 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class RegisterPageComponent implements OnInit {
   registerFormGroup : FormGroup | any;
-  constructor(private formBuilder : FormBuilder) { }
+  constructor(private formBuilder : FormBuilder,
+              private authService : AuthService,
+              private toastrService : ToastrService) { }
 
   ngOnInit(): void {
     this.registerFormGroup = this.formBuilder.group({
@@ -46,7 +51,19 @@ export class RegisterPageComponent implements OnInit {
     if (this.registerFormGroup.invalid) {
       this.registerFormGroup.markAllAsTouched();
     } else {
-      console.log(this.firstName.value)
+      this.authService.registerUser(
+        new RegisterPayloadRequestModel(
+          this.firstName.value,
+          this.lastName.value,
+          this.username.value,
+          this.password.value,
+          this.email.value,
+        )
+      ).subscribe((res) => {
+        this.toastrService.success("Check your email!")
+      }, (err) => {
+        this.toastrService.error("Something went wrong")
+      })
     }
   }
 
