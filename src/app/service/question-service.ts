@@ -50,7 +50,8 @@ export class QuestionService {
 
   // for downloading
   getAllQuestionsBySubjectName(subjectName : string) : Observable<QuestionPayloadModel[]> {
-    return this.httpClient.get<QuestionPayloadModel[]>(`${AppComponent.API_URL}/api/v1/questions/subjectName/${subjectName}`);
+    console.log(subjectName)
+    return this.httpClient.get<QuestionPayloadModel[]>(`${AppComponent.API_URL}/api/v1/questions/findBySubjectName?subjectName=${subjectName}`);
   }
 
   getAllQuestions() : Observable<QuestionPayloadModel[]> {

@@ -92,7 +92,7 @@ export class QuestionsListComponent implements OnInit {
     let documentText : string = '';
     let wantedQuestions : QuestionPayloadModel[] = [];
     if (this.selectedSubject) {
-       this.questionService.getAllQuestionsBySubjectName(`${this.selectedSubject}`)
+      this.questionService.getAllQuestionsBySubjectName(`${this.selectedSubject}`)
         .subscribe((questions : QuestionPayloadModel[]) => {
           wantedQuestions = questions;
           documentText += `Quiz form ${this.selectedSubject}\n`;
